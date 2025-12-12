@@ -6,8 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class HomeController
+final class HomeController extends AbstractController
 {
+    #[Route('/', name: 'app_home')]
     function index(): Response
     {
         return new Response('Hello World!');
