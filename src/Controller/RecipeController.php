@@ -23,7 +23,7 @@ final class RecipeController extends AbstractController
         $slug = $request->attributes->get('slug');
         $id = $request->attributes->getInt('id');
 
-        return new JsonResponse([
+        return $this->json([
             'id' => $id,
             'slug' => $slug,
         ]);
