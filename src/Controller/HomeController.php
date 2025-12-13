@@ -13,6 +13,9 @@ final class HomeController extends AbstractController
     function index(Request $request): Response
     {
         $name = $request->query->get('name', 'World'); // Default to 'World' if 'name' parameter is not provided
-        return new Response("Hello $name");
+        return $this->render('home/index.html.twig', [
+            'name' => $name,
+            'controller_name' => 'HomeController',
+        ]);
     }
 }

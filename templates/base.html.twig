@@ -16,6 +16,12 @@
 		{% endblock %}
 	</head>
 	<body>
+		<nav>
+			<div class="container-fluid">
+				<a href="{{url("home")}}">Acceuil</a>
+				<a href="{{url("recipe.index")}}">Recettes</a>
+			</div>
+		</nav>
 		{% block body %}{% endblock %}
 	</body>
 </html>
