@@ -17,9 +17,15 @@
 	</head>
 	<body>
 		<nav>
-			<div class="container-fluid">
-				<a href="{{url("home")}}">Acceuil</a>
-				<a href="{{url("recipe.index")}}">Recettes</a>
+			<div class="container-fluid navbar navbar-expand-lg navbar-light bg-light">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="{{url("home")}}">Acceuil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{url("recipe.index")}}">Recettes</a>
+					</li>
+				</ul>
 			</div>
 		</nav>
 		{% block body %}{% endblock %}
