@@ -14,4 +14,14 @@
 			:
 			{{ slug }}</p>
 	</div>
+	<div
+		class="container mt-4 ">
+		{# Pour afficher un tableau, il faut utiliser '.' person.firstName #}
+		<p>Nom du personne :
+			{{ person.firstName }}
+		</p>
+		<p>Prénom de la personne:
+			{{ person.lastName }}
+		</p>
+	</div>
 {% endblock %}

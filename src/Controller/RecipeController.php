@@ -29,6 +29,10 @@ final class RecipeController extends AbstractController
             'controller_name' => 'RecipeController',
             'id' => $id,
             'slug' => $slug,
+            'person' => [
+                'firstName' => 'John',
+                'lastName' => 'Doe',
+            ],
         ]);
     }
 }
