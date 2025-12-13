@@ -24,8 +24,10 @@
 		This friendly message is coming from:
 
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url('recipe.show', {id: 1, slug: 'poulet-au-fromage'}) }}">Poulet au fromage</a>
+			<li
+				class="nav-item">
+				{# Use "path" to generate url without domain name, use "url" to generate full url #}
+				<a class="nav-link" href="{{ path('recipe.show', {id: 1, slug: 'poulet-au-fromage'}) }}">Poulet au fromage</a>
 			</li>
 		</ul>
 	</div>
