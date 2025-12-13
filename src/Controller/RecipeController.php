@@ -25,7 +25,8 @@ final class RecipeController extends AbstractController
         $slug = $request->attributes->get('slug');
         $id = $request->attributes->getInt('id');
 
-        return $this->json([
+        return $this->render('recipe/show.html.twig', [
+            'controller_name' => 'RecipeController',
             'id' => $id,
             'slug' => $slug,
         ]);

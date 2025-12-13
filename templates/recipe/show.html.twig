@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les recettes de cuisine
+{% endblock %}
+
+
+{% block body %}
+	<div class="container mt-4 text-center">
+		<h1>
+			{{ controller_name }}! ✅
+		</h1>
+		<p>Recette
+			{{ id }}
+			:
+			{{ slug }}</p>
+	</div>
+{% endblock %}
