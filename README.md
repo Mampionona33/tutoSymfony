@@ -55,3 +55,26 @@ USE symfony_db;
 SHOW TABLES;
 SELECT * FROM recette;
 ```
+
+---
+
+## 🔍 Vérifier la version MySQL
+
+Après ouverture d’Adminer, exécute la commande suivante :
+
+```sql
+SELECT VERSION();
+```
+
+Cela affichera la version exacte de MySQL utilisée par ton conteneur.
+
+---
+
+## ⚙️ Ajuster le fichier `.env`
+
+Modifie ensuite la variable `DATABASE_URL` dans ton `.env` en fonction du résultat de la commande précédente.
+Par exemple, si `SELECT VERSION()` retourne `8.0.44`, mets :
+
+```env
+DATABASE_URL="mysql://symfony:symfony@mysql:3306/symfony_db?serverVersion=8.0.44&charset=utf8mb4"
+```
