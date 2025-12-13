@@ -22,12 +22,10 @@
 			{{ controller_name }}! ✅</h1>
 
 		This friendly message is coming from:
-		<ul>
-			<li>Your controller at
-				<code>/mnt/data/dev/tutoSymfony/src/Controller/RecipeController.php</code>
-			</li>
-			<li>Your template at
-				<code>/mnt/data/dev/tutoSymfony/templates/recipe/index.html.twig</code>
+
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url('recipe.show', {id: 1, slug: 'poulet-au-fromage'}) }}">Poulet au fromage</a>
 			</li>
 		</ul>
 	</div>
