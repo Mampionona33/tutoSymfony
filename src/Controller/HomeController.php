@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/', name: 'home')]
     function index(Request $request): Response
     {
         $name = $request->query->get('name', 'World'); // Default to 'World' if 'name' parameter is not provided
