@@ -9,12 +9,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class RecipeController extends AbstractController
 {
-    #[Route('/recipe/{slug}-{id}', name: 'recipe.show')]
+    #[Route('/recipe/{slug}-{id}', name: 'recipe.show', requirements: ['id' => '\d+', 'slug' => '[a-z0-9\-]+'])]
     public function index(Request $request): Response
     {
         $slug = $request->attributes->get('slug');
-        $id = $request->attributes->get('id');
+        $id = $request->attributes->getInt('id');
 
-        dd("Recipe: $slug, id: $id");
+        dd($slug, $id);
     }
 }
