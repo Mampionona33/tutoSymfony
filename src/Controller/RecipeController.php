@@ -21,6 +21,15 @@ final class RecipeController extends AbstractController
             'recipes' => $recipes,
         ]);
     }
+    #[Route('/recette/duree/{duration}', name: 'recipe.duration')]
+    public function recipeLowerThan(Request $request, int $duration, RecipeRepository $recipeRepository)
+    {
+        $recipes = $recipeRepository->findWithDurationLowerThan($duration);
+        return new JsonResponse([
+            'duration' => $duration,
+            'data' => $recipes
+        ]);
+    }
 
     #[Route('/recette/{slug}-{id}', name: 'recipe.show', requirements: ['id' => '\d+', 'slug' => '[a-z0-9\-]+'])]
     public function show(Request $request, int $id, string $slug, RecipeRepository $recipeRepository): Response
