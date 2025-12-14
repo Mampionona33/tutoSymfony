@@ -62,6 +62,7 @@ final class RecipeController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $recipe->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->persist($recipe);
             $entityManager->flush();
             $this->addFlash('success', 'Recette modifiée avec succès !');
