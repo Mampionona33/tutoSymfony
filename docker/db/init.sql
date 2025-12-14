@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS recipe (
     title VARCHAR(255) NOT NULL,
     content TEXT,
     slug VARCHAR(255) UNIQUE,
-    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Table des ingrédients
@@ -17,7 +18,9 @@ CREATE TABLE IF NOT EXISTS ingredient (
     nom VARCHAR(255) NOT NULL,
     unite VARCHAR(50),
     quantite DECIMAL(10,2),
-    slug VARCHAR(255) UNIQUE
+    slug VARCHAR(255) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Table de liaison recipe <-> ingrédients (relation N-N)
@@ -26,7 +29,9 @@ CREATE TABLE IF NOT EXISTS recipe_ingredient (
     ingredient_id INT NOT NULL,
     PRIMARY KEY (recipe_id, ingredient_id),
     FOREIGN KEY (recipe_id) REFERENCES recipe(id) ON DELETE CASCADE,
-    FOREIGN KEY (ingredient_id) REFERENCES ingredient(id) ON DELETE CASCADE
+    FOREIGN KEY (ingredient_id) REFERENCES ingredient(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Exemple de données : menus
