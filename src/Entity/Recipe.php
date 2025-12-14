@@ -28,6 +28,9 @@ class Recipe
     #[ORM\Column(nullable: true)]
     private ?int $duration = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $content = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Recipe
     public function setDuration(?int $duration): static
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): static
+    {
+        $this->content = $content;
 
         return $this;
     }

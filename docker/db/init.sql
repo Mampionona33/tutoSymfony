@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS recipe (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT,
+    duration INT,
     slug VARCHAR(255) UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -42,12 +43,12 @@ CREATE TABLE IF NOT EXISTS recipe_ingredient (
 );
 
 -- Exemple de données : menus
-INSERT INTO recipe (title, content, slug) VALUES
-('Poulet au fromage', 'Recette savoureuse de poulet gratiné au fromage', 'poulet-fromage'),
-('Salade fraîcheur', 'Salade légère avec légumes de saison', 'salade-fraicheur'),
-('Spaghetti bolognaise', 'Pâtes avec sauce tomate et viande hachée', 'spaghetti-bolognaise'),
-('Soupe de légumes', 'Soupe chaude et nourrissante', 'soupe-legumes'),
-('Tarte aux pommes', 'Dessert classique avec pommes caramélisées', 'tarte-pommes');
+INSERT INTO recipe (title, content, duration,slug) VALUES
+('Poulet au fromage', 'Recette savoureuse de poulet gratiné au fromage',50, 'poulet-fromage'),
+('Salade fraîcheur', 'Salade légère avec légumes de saison', 10,'salade-fraicheur'),
+('Spaghetti bolognaise', 'Pâtes avec sauce tomate et viande hachée',30, 'spaghetti-bolognaise'),
+('Soupe de légumes', 'Soupe chaude et nourrissante',30, 'soupe-legumes'),
+('Tarte aux pommes', 'Dessert classique avec pommes caramélisées',20, 'tarte-pommes');
 
 INSERT INTO ingredient (nom, unite, quantite, slug) VALUES
 ('Poulet', 'kg', 1.5, 'poulet'),
