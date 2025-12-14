@@ -1,5 +1,12 @@
+-- 🔐 Forcer l'encodage UTF-8 dès le début
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+
 -- Création de la base si elle n'existe pas
-CREATE DATABASE IF NOT EXISTS symfony_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS symfony_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
 USE symfony_db;
 
 -- Table des recipes
@@ -23,7 +30,7 @@ CREATE TABLE IF NOT EXISTS ingredient (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Table de liaison recipe <-> ingrédients (relation N-N)
+-- Table de liaison recipe <-> ingrédients
 CREATE TABLE IF NOT EXISTS recipe_ingredient (
     recipe_id INT NOT NULL,
     ingredient_id INT NOT NULL,
@@ -56,18 +63,18 @@ INSERT INTO ingredient (nom, unite, quantite, slug) VALUES
 ('Sucre', 'g', 100, 'sucre'),
 ('Pâte brisée', 'pièce', 1, 'pate-brisee');
 
--- Liaison recipes <-> ingrédients
+-- Liaisons
 INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES
-(1, 1), -- Poulet au fromage contient Poulet
-(1, 2), -- Poulet au fromage contient Fromage
-(2, 3), -- Salade fraîcheur contient Tomate
-(2, 4), -- Salade fraîcheur contient Laitue
-(3, 5), -- Spaghetti bolognaise contient Spaghetti
-(3, 6), -- Spaghetti bolognaise contient Viande hachée
-(3, 3), -- Spaghetti bolognaise contient Tomate
-(4, 7), -- Soupe de légumes contient Carotte
-(4, 8), -- Soupe de légumes contient Pomme de terre
-(4, 9), -- Soupe de légumes contient Courgette
-(5, 10), -- Tarte aux pommes contient Pomme
-(5, 11), -- Tarte aux pommes contient Sucre
-(5, 12); -- Tarte aux pommes contient Pâte brisée
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5),
+(3, 6),
+(3, 3),
+(4, 7),
+(4, 8),
+(4, 9),
+(5, 10),
+(5, 11),
+(5, 12);
