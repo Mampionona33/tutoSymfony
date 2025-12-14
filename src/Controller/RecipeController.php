@@ -55,7 +55,7 @@ final class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('recette/edit/{id}', name: 'recipe.edit', requirements: ['id' => '\d+'])]
+    #[Route('recette/edit/{id}', name: 'recipe.edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function edit(Recipe $recipe, Request $request, EntityManagerInterface $entityManager): Response
     {
         // dd($recipe);
@@ -74,6 +74,15 @@ final class RecipeController extends AbstractController
             'recipe' => $recipe,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/recette/delete/{id}', name: 'recipe.delete', requirements: ['id' => '\d+'], methods: ['DELETE', 'GET'])]
+    public function delete(Recipe $recipe, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($recipe);
+        $entityManager->flush();
+        $this->addFlash('success', 'Recette supprimée avec succès !');
+        return $this->redirectToRoute('recipe.index');
     }
 
     #[Route('/recette/{slug}-{id}', name: 'recipe.show', requirements: ['id' => '\d+', 'slug' => '[a-z0-9\-]+'])]
