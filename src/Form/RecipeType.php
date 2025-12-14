@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Recipe;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,7 +23,10 @@ class RecipeType extends AbstractType
             ])
             ->add('duration')
             ->add('content')
-        ;
+            ->add('save', SubmitType::class, [
+                'label' => 'Save Recipe',
+                'attr' => ['class' => 'btn btn-primary mt-3'],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
