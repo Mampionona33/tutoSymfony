@@ -13,4 +13,7 @@
 			{{ recipe.duration }}
 			minutes</p>
 	</div>
+	<div class="container mt-4">
+		<a class="btn btn-primary" href="{{ path('recipe.edit', { id: recipe.id }) }}">Edit</a>
+	</div>
 {% endblock %}

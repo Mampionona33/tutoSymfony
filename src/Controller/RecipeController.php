@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Recipe;
+use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,6 +30,20 @@ final class RecipeController extends AbstractController
         return new JsonResponse([
             'duration' => $duration,
             'data' => $recipes
+        ]);
+    }
+
+
+    #[Route('recette/edit/{id}', name: 'recipe.edit', requirements: ['id' => '\d+'])]
+    public function edit(Recipe $recipe): Response
+    {
+        // dd($recipe);
+        $form = $this->createForm(RecipeType::class, $recipe);
+
+        return $this->render('recipe/edit.html.twig', [
+            'controller_name' => 'RecipeController',
+            'recipe' => $recipe,
+            'form' => $form,
         ]);
     }
 
