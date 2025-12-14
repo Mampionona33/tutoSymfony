@@ -15,12 +15,12 @@ class RecipeType extends AbstractType
         $builder
             ->add('title')
             ->add('slug')
-            ->add('created_at', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updated_at', null, [
-                'widget' => 'single_text',
-            ])
+            // ->add('created_at', null, [
+            //     'widget' => 'single_text',
+            // ])
+            // ->add('updated_at', null, [
+            //     'widget' => 'single_text',
+            // ])
             ->add('duration')
             ->add('content')
             ->add('save', SubmitType::class, [
