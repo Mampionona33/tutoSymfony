@@ -18,11 +18,11 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Hello
-			{{ controller_name }}! ✅</h1>
+		<div class="mb-4 d-flex justify-content-end">
+			<a class="btn btn-primary" href="{{ path('recipe.new') }}">Create a new recipe</a>
+		</div>
+		<h1>Toutes les recettes</h1>
 
-
-		This friendly message is coming from:
 		<ul class="navbar-nav mr-auto">
 			{% for recipe in recipes %}
 				<li class="nav-item">
