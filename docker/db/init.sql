@@ -2,11 +2,12 @@
 CREATE DATABASE IF NOT EXISTS symfony_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE symfony_db;
 
--- Table des recettes
-CREATE TABLE IF NOT EXISTS recette (
+-- Table des recipes
+CREATE TABLE IF NOT EXISTS recipe (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    titre VARCHAR(255) NOT NULL,
-    description TEXT,
+    title VARCHAR(255) NOT NULL,
+    content TEXT,
+    slug VARCHAR(255) UNIQUE,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -15,42 +16,43 @@ CREATE TABLE IF NOT EXISTS ingredient (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     unite VARCHAR(50),
-    quantite DECIMAL(10,2)
+    quantite DECIMAL(10,2),
+    slug VARCHAR(255) UNIQUE
 );
 
--- Table de liaison recette <-> ingrédients (relation N-N)
-CREATE TABLE IF NOT EXISTS recette_ingredient (
-    recette_id INT NOT NULL,
+-- Table de liaison recipe <-> ingrédients (relation N-N)
+CREATE TABLE IF NOT EXISTS recipe_ingredient (
+    recipe_id INT NOT NULL,
     ingredient_id INT NOT NULL,
-    PRIMARY KEY (recette_id, ingredient_id),
-    FOREIGN KEY (recette_id) REFERENCES recette(id) ON DELETE CASCADE,
+    PRIMARY KEY (recipe_id, ingredient_id),
+    FOREIGN KEY (recipe_id) REFERENCES recipe(id) ON DELETE CASCADE,
     FOREIGN KEY (ingredient_id) REFERENCES ingredient(id) ON DELETE CASCADE
 );
 
 -- Exemple de données : menus
-INSERT INTO recette (titre, description) VALUES
-('Poulet au fromage', 'Recette savoureuse de poulet gratiné au fromage'),
-('Salade fraîcheur', 'Salade légère avec légumes de saison'),
-('Spaghetti bolognaise', 'Pâtes avec sauce tomate et viande hachée'),
-('Soupe de légumes', 'Soupe chaude et nourrissante'),
-('Tarte aux pommes', 'Dessert classique avec pommes caramélisées');
+INSERT INTO recipe (title, content, slug) VALUES
+('Poulet au fromage', 'Recette savoureuse de poulet gratiné au fromage', 'poulet-fromage'),
+('Salade fraîcheur', 'Salade légère avec légumes de saison', 'salade-fraicheur'),
+('Spaghetti bolognaise', 'Pâtes avec sauce tomate et viande hachée', 'spaghetti-bolognaise'),
+('Soupe de légumes', 'Soupe chaude et nourrissante', 'soupe-legumes'),
+('Tarte aux pommes', 'Dessert classique avec pommes caramélisées', 'tarte-pommes');
 
-INSERT INTO ingredient (nom, unite, quantite) VALUES
-('Poulet', 'kg', 1.5),
-('Fromage', 'g', 200),
-('Tomate', 'pièce', 3),
-('Laitue', 'pièce', 1),
-('Spaghetti', 'g', 500),
-('Viande hachée', 'g', 300),
-('Carotte', 'pièce', 2),
-('Pomme de terre', 'pièce', 2),
-('Courgette', 'pièce', 1),
-('Pomme', 'pièce', 4),
-('Sucre', 'g', 100),
-('Pâte brisée', 'pièce', 1);
+INSERT INTO ingredient (nom, unite, quantite, slug) VALUES
+('Poulet', 'kg', 1.5, 'poulet'),
+('Fromage', 'g', 200, 'fromage'),
+('Tomate', 'pièce', 3, 'tomate'),
+('Laitue', 'pièce', 1, 'laitue'),
+('Spaghetti', 'g', 500, 'spaghetti'),
+('Viande hachée', 'g', 300, 'viande-hachee'),
+('Carotte', 'pièce', 2, 'carotte'),
+('Pomme de terre', 'pièce', 2, 'pomme-de-terre'),
+('Courgette', 'pièce', 1, 'courgette'),
+('Pomme', 'pièce', 4, 'pomme'),
+('Sucre', 'g', 100, 'sucre'),
+('Pâte brisée', 'pièce', 1, 'pate-brisee');
 
--- Liaison recettes <-> ingrédients
-INSERT INTO recette_ingredient (recette_id, ingredient_id) VALUES
+-- Liaison recipes <-> ingrédients
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES
 (1, 1), -- Poulet au fromage contient Poulet
 (1, 2), -- Poulet au fromage contient Fromage
 (2, 3), -- Salade fraîcheur contient Tomate
