@@ -30,9 +30,10 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: symfony-php
-    restart: always
     volumes:
       - .:/var/www/html
+    environment:
+      DATABASE_URL: "mysql://symfony:symfony@mysql:3306/symfony_db"
     depends_on:
       - mysql
 

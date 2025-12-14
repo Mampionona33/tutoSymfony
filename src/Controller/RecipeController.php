@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,8 +13,10 @@ final class RecipeController extends AbstractController
 {
 
     #[Route('/recette', name: 'recipe.index')]
-    public function index(Request $request): Response
+    public function index(Request $request, RecipeRepository $recipeRepository): Response
     {
+        $recipes = $recipeRepository->findAll();
+        dd($recipes);
         return $this->render('recipe/index.html.twig', [
             'controller_name' => 'RecipeController',
         ]);
