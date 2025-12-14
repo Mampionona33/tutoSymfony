@@ -13,7 +13,7 @@ USE symfony_db;
 CREATE TABLE IF NOT EXISTS recipe (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    content TEXT,
+    content LONGTEXT,
     duration INT,
     slug VARCHAR(255) UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

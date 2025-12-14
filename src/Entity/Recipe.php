@@ -28,7 +28,7 @@ class Recipe
     #[ORM\Column(nullable: true)]
     private ?int $duration = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $content = null;
 
     public function getId(): ?int
