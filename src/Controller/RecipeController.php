@@ -34,8 +34,8 @@ final class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/recette/new', name: 'recipe.new')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/recette/new', name: 'recipe.create')]
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
